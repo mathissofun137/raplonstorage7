@@ -2,8 +2,10 @@
   <html lang=en>
     <meta charset=UTF-8>
     <meta content="width=device-width,initial-scale=1" name=viewport>
-    <title>raplon</title>
+    <title>raplom</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel=stylesheet>
+    <link href=https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css rel=stylesheet>
+    <link href=https://cdn.jsdelivr.net/npm/highlight.js@latest/styles/github-dark.min.css rel=stylesheet>
     <script src=https://cdn.jsdelivr.net/npm/marked@latest/lib/marked.umd.min.js></script>
     <script src=https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js></script>
     <script src=https://cdn.jsdelivr.net/npm/marked-katex-extension@latest/lib/index.umd.min.js></script>
@@ -3766,6 +3768,13 @@ body::after{background:radial-gradient(80% 80% at 50% 45%,transparent 40%,rgba(3
 .ntp-card span{text-align:center}
 .ntp-card b{font-size:12px;font-weight:700;color:var(--ink)}
 </style>
+<style id=compat-theme>
+/* compat with main.js: it renders recent chats into #aiRecentList */
+#aiRecentList{display:flex;flex-direction:column;gap:1px}
+/* main.js renders ~11 shortcuts (2 rows) - keep short windows from clipping */
+@media (max-height:760px){.ntp-cards{display:none}}
+@media (max-height:640px){.ntp-status{display:none}}
+</style>
 <svg width=0 height=0 style=position:absolute aria-hidden=true focusable=false><defs>
 <linearGradient id=gP x1=0 y1=0 x2=1 y2=1><stop offset=0 stop-color=#d4ccff /><stop offset=.5 stop-color=#8b7cf6 /><stop offset=1 stop-color=#5eead4 /></linearGradient>
 <linearGradient id=gL x1=0 y1=0 x2=1 y2=1><stop offset=0 stop-color=#ffffff /><stop offset=1 stop-color=#d4ccff /></linearGradient>
@@ -4305,7 +4314,9 @@ body::after{background:radial-gradient(80% 80% at 50% 45%,transparent 40%,rgba(3
           <div class=ai-sidebar-section>
             <div class=ai-section-label>Recent</div>
             <div class=ai-recents-list id=aiRecentsList>
-              <div class=ai-empty-state>No recent chats</div>
+              <div id=aiRecentList>
+                <div class=ai-empty-state>No recent chats</div>
+              </div>
             </div>
           </div>
           <div class=ai-status-bottom id=aiStatus></div>
@@ -4417,15 +4428,6 @@ body::after{background:radial-gradient(80% 80% at 50% 45%,transparent 40%,rgba(3
           if (e.key === 'Escape') { addr.blur(); return }
           if (e.key !== 'Enter') return;
           e.preventDefault();
-          const q = addr.value.trim();
-          if (!q || q === 'raplon://home') { addr.blur(); return }
-          for (const p of pages) { const el = $(p[0]); if (el && el.classList.contains('open')) { call(p[3])(); break } }
-          const si = $('searchInput');
-          if (si) {
-            si.value = q;
-            si.dispatchEvent(new Event('input', { bubbles: true }));
-            si.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true, cancelable: true }));
-          }
           addr.blur();
         });
         sync();
