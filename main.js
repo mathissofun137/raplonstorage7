@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Fully de-obfuscated opium proxy + AI client
-   (all Unicode escapes, string reversals, and XOR padding removed)
-   ========================================================================== */
 
 window.dataLayer = window.dataLayer || [];
 window.gtag = function () { dataLayer.push(arguments); };
