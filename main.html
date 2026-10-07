@@ -2,9 +2,14 @@
   <html lang=en>
     <meta charset=UTF-8>
     <meta content="width=device-width,initial-scale=1" name=viewport>
-    <title>raplom</title>
+    <title>raplon</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel=stylesheet>
- 
+    <script src=https://cdn.jsdelivr.net/npm/marked@latest/lib/marked.umd.min.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/marked-katex-extension@latest/lib/index.umd.min.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@latest/highlight.min.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/marked-highlight@latest/lib/index.umd.min.js></script>
+    <script src=https://cdn.jsdelivr.net/npm/dompurify@latest/dist/purify.min.js></script>
     <style>
       *,
       ::after,
@@ -26,10 +31,10 @@
         --vh: 1vh;
         --tog-w: clamp(36px, 5vw, 44px);
         --tog-h: clamp(20px, 2.8vw, 24px);
-        --accent: #8b7cf6;
-        --accent-bright: #a78bfa;
-        --accent-dim: #6d5cd6;
-        --accent-glow: rgba(139, 124, 246, 0.35)
+        --accent: #5e97f6;
+        --accent-bright: #8ab4f8;
+        --accent-dim: #4f86e0;
+        --accent-glow: rgba(94, 151, 246, 0.35)
       }
 
       body {
@@ -92,7 +97,7 @@
         font-style: italic;
         font-size: clamp(64px, 11vw, 100px);
         font-weight: 400;
-        background: linear-gradient(135deg, #7700ffc9 40%, var(--accent-bright) 200%);
+        background: linear-gradient(135deg, #8ab4f8 40%, var(--accent-bright) 200%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -221,7 +226,7 @@
 
       .ac-item.selected,
       .ac-item:hover {
-        background: rgba(139, 124, 246, .12);
+        background: rgba(94, 151, 246, .12);
         color: #fff
       }
 
@@ -313,7 +318,7 @@
       }
 
       .shortcut:hover {
-        background: rgba(139, 124, 246, .1);
+        background: rgba(94, 151, 246, .1);
         border-color: var(--accent-dim);
         transform: translateY(-2px)
       }
@@ -872,7 +877,7 @@
       .sidebar-item.active {
         color: #fff;
         border-left-color: var(--accent-bright);
-        background: rgba(139, 124, 246, .1)
+        background: rgba(94, 151, 246, .1)
       }
 
       .settings-tabs {
@@ -913,7 +918,7 @@
       .tab-item.active {
         color: #fff;
         border-color: var(--accent);
-        background: rgba(139, 124, 246, .16)
+        background: rgba(94, 151, 246, .16)
       }
 
       .settings-panels {
@@ -1337,7 +1342,7 @@
       }
 
       .game-card:hover {
-        background: rgba(139, 124, 246, .09);
+        background: rgba(94, 151, 246, .09);
         border-color: var(--accent-dim);
         color: #fff;
         transform: translateY(-2px);
@@ -1362,7 +1367,7 @@
         width: 100%;
         aspect-ratio: 16/9;
         flex-shrink: 0;
-        background: linear-gradient(100deg, rgba(255, 255, 255, .03) 40%, rgba(139, 124, 246, .1) 50%, rgba(255, 255, 255, .03) 60%);
+        background: linear-gradient(100deg, rgba(255, 255, 255, .03) 40%, rgba(94, 151, 246, .1) 50%, rgba(255, 255, 255, .03) 60%);
         background-size: 200% 100%;
         animation: shimmer 2.2s ease-in-out infinite
       }
@@ -1916,7 +1921,7 @@
       }
 
       .effect-btn:hover {
-        background: rgba(139, 124, 246, .09);
+        background: rgba(94, 151, 246, .09);
         border-color: var(--accent-dim);
         color: #fff;
         transform: translateY(-2px);
@@ -1928,14 +1933,14 @@
       }
 
       .effect-btn.playing {
-        background: rgba(139, 124, 246, .16);
+        background: rgba(94, 151, 246, .16);
         border-color: var(--accent);
         color: #fff
       }
 
       .effect-btn.skeleton {
         cursor: default;
-        background: linear-gradient(100deg, rgba(255, 255, 255, .03) 40%, rgba(139, 124, 246, .1) 50%, rgba(255, 255, 255, .03) 60%);
+        background: linear-gradient(100deg, rgba(255, 255, 255, .03) 40%, rgba(94, 151, 246, .1) 50%, rgba(255, 255, 255, .03) 60%);
         background-size: 200% 100%;
         animation: shimmer 2.2s ease-in-out infinite
       }
@@ -2210,12 +2215,12 @@
 
       .ext-prompt-btn.yes {
         background: var(--accent-glow);
-        border-color: rgba(139, 124, 246, .4);
+        border-color: rgba(94, 151, 246, .4);
         color: #fff
       }
 
       .ext-prompt-btn.yes:hover {
-        background: rgba(139, 124, 246, .5);
+        background: rgba(94, 151, 246, .5);
         border-color: var(--accent-bright)
       }
 
@@ -2496,7 +2501,7 @@
 
       .ai-shine {
         display: inline-block;
-        background: linear-gradient(120deg, rgba(255, 255, 255, .75) 40%, #a78bfa 50%, rgba(255, 255, 255, .75) 60%);
+        background: linear-gradient(120deg, rgba(255, 255, 255, .75) 40%, #8ab4f8 50%, rgba(255, 255, 255, .75) 60%);
         background-size: 200% 100%;
         background-clip: text;
         -webkit-background-clip: text;
@@ -2855,7 +2860,7 @@
 
       .ai-edit-save-btn {
         padding: 6px 12px;
-        background: #8b7cf6;
+        background: #5e97f6;
         border: none;
         border-radius: 6px;
         color: #fff;
@@ -2906,7 +2911,7 @@
       .ai-typing-dot {
         width: 6px;
         height: 6px;
-        background: #a78bfa;
+        background: #8ab4f8;
         border-radius: 50%;
         animation: typingBounce 1.4s infinite ease-in-out
       }
@@ -3014,7 +3019,7 @@
       }
 
       .ai-input-icon.active {
-        color: #a78bfa
+        color: #8ab4f8
       }
 
       .ai-message-user-media {
@@ -3039,7 +3044,7 @@
       }
 
       .ai-input-wrapper:focus-within {
-        border-color: rgba(139, 124, 246, .4)
+        border-color: rgba(94, 151, 246, .4)
       }
 
       .ai-input-icon {
@@ -3108,8 +3113,8 @@
         align-items: center;
         gap: 8px;
         padding: 0 14px;
-        background: rgba(139, 124, 246, .14);
-        border: 1px solid rgba(139, 124, 246, .3);
+        background: rgba(94, 151, 246, .14);
+        border: 1px solid rgba(94, 151, 246, .3);
         border-radius: 9px;
         color: #c4b5fd;
         font-family: inherit;
@@ -3136,13 +3141,13 @@
       }
 
       .ai-model-trigger:hover {
-        background: rgba(139, 124, 246, .22);
-        border-color: rgba(139, 124, 246, .45);
+        background: rgba(94, 151, 246, .22);
+        border-color: rgba(94, 151, 246, .45);
         color: #ddd6fe
       }
 
       .ai-model-wrap.open .ai-model-trigger {
-        background: rgba(139, 124, 246, .22);
+        background: rgba(94, 151, 246, .22);
         border-color: var(--accent-bright);
         color: #ddd6fe;
         box-shadow: 0 0 0 3px var(--accent-glow)
@@ -3162,13 +3167,13 @@
         max-height: 280px;
         overflow-y: auto;
         background: rgba(14, 13, 22, .98);
-        border: 1px solid rgba(139, 124, 246, .3);
+        border: 1px solid rgba(94, 151, 246, .3);
         border-radius: 10px;
         padding: 6px;
         z-index: 20;
         box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
         scrollbar-width: thin;
-        scrollbar-color: rgba(139, 124, 246, 0.4) transparent
+        scrollbar-color: rgba(94, 151, 246, 0.4) transparent
       }
 
       .ai-model-popup::-webkit-scrollbar {
@@ -3180,12 +3185,12 @@
       }
 
       .ai-model-popup::-webkit-scrollbar-thumb {
-        background: rgba(139, 124, 246, .4);
+        background: rgba(94, 151, 246, .4);
         border-radius: 10px
       }
 
       .ai-model-popup::-webkit-scrollbar-thumb:hover {
-        background: rgba(139, 124, 246, .6)
+        background: rgba(94, 151, 246, .6)
       }
 
       .ai-model-wrap.open .ai-model-popup {
@@ -3214,12 +3219,12 @@
       }
 
       .ai-model-item:hover {
-        background: rgba(139, 124, 246, .16);
+        background: rgba(94, 151, 246, .16);
         color: #fff
       }
 
       .ai-model-item.selected {
-        background: rgba(139, 124, 246, .22);
+        background: rgba(94, 151, 246, .22);
         color: #ddd6fe
       }
 
@@ -3242,7 +3247,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #8b7cf6;
+        background: #5e97f6;
         border: none;
         border-radius: 50%;
         color: #fff;
@@ -3251,7 +3256,7 @@
       }
 
       .ai-send-btn:hover {
-        background: #a78bfa
+        background: #8ab4f8
       }
 
       .ai-send-btn svg {
@@ -3272,40 +3277,550 @@
           padding: 12px 16px 16px
         }
       }
-    </style><canvas id=stars></canvas>
+    </style>
+<style id=chrome-theme>
+:root{
+  --tab-h:40px;--tool-h:40px;--bm-h:32px;
+  --chrome-top:calc(var(--tab-h) + var(--tool-h) + var(--bm-h));
+  --c-strip:#202124;--c-bar:#35363a;--c-page:#202124;--c-card:#292a2d;--c-field:#303134;
+  --c-text:#e8eaed;--c-sub:#9aa0a6;--c-icon:#c4c7c5;
+  --accent:#5e97f6;--accent-bright:#8ab4f8;--accent-dim:#4f86e0;--accent-glow:rgba(138,180,248,.28);
+  color-scheme:dark;
+}
+body{background:var(--c-page);color:var(--c-text);padding-top:var(--chrome-top);padding-bottom:6vh;
+  font-family:Roboto,'Segoe UI',Inter,system-ui,sans-serif}
+canvas#stars{display:none}
+
+/* ---------- Chrome window frame ---------- */
+#chromeFrame{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--c-strip);user-select:none;
+  font-family:Roboto,'Segoe UI',Inter,system-ui,sans-serif}
+.cf-tabs{height:var(--tab-h);display:flex;align-items:flex-end;gap:4px;padding:0 8px}
+.cf-tab{position:relative;display:flex;align-items:center;gap:8px;height:34px;width:240px;max-width:60vw;
+  padding:0 8px 0 12px;background:var(--c-bar);border-radius:8px 8px 0 0;color:var(--c-text);font-size:12px;margin-left:8px}
+.cf-tab::before,.cf-tab::after{content:"";position:absolute;bottom:0;width:8px;height:8px}
+.cf-tab::before{left:-8px;background:radial-gradient(circle at 0 0,transparent 8px,var(--c-bar) 8.5px)}
+.cf-tab::after{right:-8px;background:radial-gradient(circle at 100% 0,transparent 8px,var(--c-bar) 8.5px)}
+.cf-fav{width:16px;height:16px;flex-shrink:0;stroke:var(--c-sub);fill:none;stroke-width:2;display:none}
+.cf-tab.has-fav .cf-fav{display:block}
+.cf-tab-title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cf-tab-x{width:18px;height:18px;border-radius:50%;border:none;background:transparent;color:var(--c-sub);
+  display:grid;place-items:center;font-size:14px;line-height:1;cursor:default}
+.cf-tab-x:hover{background:rgba(255,255,255,.12)}
+.cf-newtab{width:28px;height:28px;margin-bottom:3px;border-radius:50%;border:none;background:transparent;
+  color:var(--c-icon);font-size:18px;display:grid;place-items:center;cursor:default}
+.cf-newtab:hover{background:rgba(255,255,255,.1)}
+.cf-toolbar{height:var(--tool-h);background:var(--c-bar);display:flex;align-items:center;gap:4px;padding:0 8px;
+  box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.cf-btn{width:32px;height:32px;flex-shrink:0;border-radius:50%;border:none;background:transparent;color:var(--c-icon);
+  display:grid;place-items:center;cursor:pointer;transition:background .15s}
+.cf-btn:hover:not(:disabled){background:rgba(255,255,255,.1)}
+.cf-btn:disabled{opacity:.35;cursor:default}
+.cf-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cf-omni{flex:1;min-width:0;height:34px;display:flex;align-items:center;gap:10px;padding:0 14px;margin:0 4px;
+  background:var(--c-strip);border-radius:17px;color:var(--c-sub);font-size:14px;cursor:text;transition:background .15s}
+.cf-omni:hover{background:#282a2d}
+.cf-omni svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.cf-omni span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cf-omni.has-url{color:var(--c-text)}
+.cf-omni input{flex:1;min-width:0;background:transparent;border:none;outline:0;color:var(--c-text);font:inherit;padding:0}
+.cf-omni input::placeholder{color:var(--c-sub)}
+.cf-omni:focus-within{background:var(--c-strip);box-shadow:inset 0 0 0 2px var(--accent-bright)}
+.cf-omni:focus-within svg{stroke:var(--accent-bright)}
+
+body:has(.panel.open) #cfToolbar,body:has(.panel.open) .bottom-nav{display:none}
+
+/* ---------- bottom nav becomes the bookmarks bar ---------- */
+.bottom-nav{top:calc(var(--tab-h) + var(--tool-h));bottom:auto;height:var(--bm-h);z-index:300;align-items:center;
+  background:var(--c-bar);border-top:none;border-bottom:1px solid rgba(255,255,255,.07);padding:0 10px}
+.bottom-nav.hidden{transform:translateY(-100%)}
+.nav-buttons{order:1;gap:2px}
+.nav-stats{order:2;margin-left:auto;flex-direction:row;gap:14px;padding:0}
+.nav-stat{font-size:11px;letter-spacing:0;color:var(--c-sub);font-weight:400}
+.nav-item{flex-direction:row;gap:6px;height:26px;padding:0 10px;border-radius:6px;color:var(--c-text);
+  font-size:12px;letter-spacing:0;text-transform:none;font-weight:400}
+.nav-item:hover{background:rgba(255,255,255,.1);color:#fff}
+.nav-item.active{background:rgba(138,180,248,.18);color:var(--accent-bright)}
+.nav-item::before{display:none}
+.nav-item svg{width:15px;height:15px;stroke-width:1.8}
+@media (max-width:640px){.nav-stats{display:none}.nav-buttons{width:100%;justify-content:space-around}}
+
+/* ---------- New Tab page ---------- */
+.wordmark{width:fit-content;font-family:Inter,Roboto,sans-serif;font-style:normal;font-weight:500;
+  font-size:clamp(56px,9vw,84px);letter-spacing:-.04em;margin-bottom:22px;
+  background:linear-gradient(90deg,#8ab4f8 0 16.6%,#f28b82 16.6% 33.3%,#fdd663 33.3% 50%,#8ab4f8 50% 66.6%,#81c995 66.6% 83.3%,#f28b82 83.3% 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-family:Inter,Roboto,sans-serif;font-weight:400;font-size:14px;color:var(--c-sub);margin-bottom:26px}
+.tagline a:hover{color:var(--c-text)}
+.search-wrap,.search-wrap.expanded{width:min(584px,100%)}
+.search-bar{height:46px;padding:0 20px;gap:12px;background:var(--c-field);border:1px solid transparent;border-radius:24px}
+.search-bar:hover,.search-wrap.expanded .search-bar{background:var(--c-field);border-color:transparent;box-shadow:0 1px 6px rgba(0,0,0,.55)}
+.search-wrap.expanded.has-ac .search-bar{border-radius:24px 24px 0 0}
+.search-bar svg,.search-wrap.expanded .search-bar svg{width:16px;height:16px;stroke:var(--c-sub)}
+.search-bar input{font-size:16px;font-weight:400;color:var(--c-text);padding:0}
+.search-bar input::placeholder{color:var(--c-sub)}
+.autocomplete{background:var(--c-field);border:none;border-radius:0 0 24px 24px;box-shadow:0 4px 8px rgba(0,0,0,.45)}
+.shortcuts{--sc-icon:48px;--sc-font:12px;width:min(600px,100%);gap:4px;margin-top:30px}
+.shortcut{background:transparent;border:none;border-radius:8px;padding:12px 4px 8px}
+.shortcut:hover{background:rgba(232,234,237,.08);border:none;transform:none}
+.shortcut-icon{box-sizing:border-box;padding:11px;border-radius:50%;background:#3c4043}
+.shortcut span{color:var(--c-text)}
+
+/* ---------- Chrome-style browsing panel ---------- */
+.panel{inset:var(--tab-h) 0 0 0;background:var(--c-page)}
+.panel-bar-wrap,.game-player-bar-wrap{background:var(--c-bar);border-bottom:1px solid rgba(0,0,0,.3);padding:4px 8px}
+.panel-bar,.game-player-bar{gap:4px}
+.nb{width:32px;height:32px;justify-content:center;border-radius:50%;color:var(--c-icon);padding:0;transition:background .15s,color .15s}
+.nb:hover{background:rgba(255,255,255,.1);color:#fff}
+.nb svg{width:16px;height:16px}
+.addr-wrap,.game-player-id{height:34px;margin:0 4px;background:var(--c-strip);border:none;border-radius:17px;padding:0 14px}
+.addr-wrap:hover{background:#282a2d}
+.addr-wrap:focus-within{background:var(--c-strip);box-shadow:inset 0 0 0 2px var(--accent-bright)}
+.addr-input{font-size:14px;color:var(--c-text)}
+.addr-sep{display:none}
+.panel iframe{background:var(--c-page)}
+
+/* ---------- Games / Soundboard / AI / Settings ---------- */
+.games-screen,.effects-screen,.ai-screen{inset:var(--chrome-top) 0 0 0;background:var(--c-page)}
+.screen-header{background:var(--c-card);border-bottom:1px solid rgba(255,255,255,.06)}
+.screen-header-title{font-family:Roboto,Inter,sans-serif;font-style:normal;font-weight:500;font-size:clamp(15px,2vw,18px)}
+.screen-header-sub{letter-spacing:.14em;color:var(--c-sub)}
+.games-search-bar,.effects-search-bar{background:var(--c-field);border:1px solid transparent;border-radius:22px;padding:0 18px}
+.games-search-input,.effects-search-input{font-weight:400;color:var(--c-text)}
+.game-card,.effect-btn{background:var(--c-card);border:1px solid transparent;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.4);color:var(--c-icon)}
+.game-card:hover,.effect-btn:hover{background:var(--c-bar);border-color:rgba(138,180,248,.35);transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.45);color:#fff}
+.effect-btn.playing{background:rgba(138,180,248,.16);border-color:var(--accent-bright)}
+.settings-inner{background:var(--c-card);border-radius:12px}
+.ai-sidebar{background:var(--c-card)}
+.game-player{background:var(--c-page)}
+
+/* ---------- Extra Chrome polish ---------- */
+.cf-tabs{padding:0 8px 0 4px;background:var(--c-strip)}
+.cf-tab{margin-left:8px;box-shadow:0 -1px 0 rgba(255,255,255,.04) inset}
+.cf-fav{display:block!important;stroke:none!important}
+.cf-fav-img{width:16px;height:16px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#8ab4f8,#5e97f6);color:#202124;font:700 10px/1 Roboto,Inter,sans-serif}
+.cf-tab-x{cursor:pointer}
+.cf-newtab{cursor:pointer;margin-left:2px}
+.cf-tabsearch{width:28px;height:28px;margin:0 2px 3px 0;border-radius:8px;border:none;background:transparent;color:var(--c-icon);
+  display:grid;place-items:center;cursor:pointer;order:-1}
+.cf-tabsearch:hover{background:rgba(255,255,255,.1)}
+.cf-tabsearch svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cf-omni{padding:0 6px 0 4px;gap:6px}
+.cf-site{width:26px;height:26px;border-radius:50%;border:none;background:rgba(255,255,255,.07);color:var(--c-icon);
+  display:grid;place-items:center;flex-shrink:0;cursor:pointer}
+.cf-site:hover{background:rgba(255,255,255,.14)}
+.cf-site svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cf-omni input{padding-left:4px}
+.cf-omni-star{width:26px;height:26px;border-radius:50%;border:none;background:transparent;color:var(--c-icon);
+  display:grid;place-items:center;flex-shrink:0;cursor:pointer}
+.cf-omni-star:hover{background:rgba(255,255,255,.1)}
+.cf-omni-star svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linejoin:round}
+.cf-omni-star.on svg{fill:var(--accent-bright);stroke:var(--accent-bright)}
+.cf-omni:focus-within .cf-site{background:transparent}
+.cf-avatar{width:26px;height:26px;margin:0 4px 0 2px;border-radius:50%;border:none;flex-shrink:0;cursor:pointer;
+  background:#5f6368;color:#e8eaed;font:500 12px/1 Roboto,Inter,sans-serif;display:grid;place-items:center}
+.cf-avatar:hover{background:#6f7378}
+.cf-toolbar{gap:2px;padding:0 6px 0 8px}
+.cf-sep{width:1px;height:16px;background:rgba(255,255,255,.14);margin:0 4px;flex-shrink:0}
+
+/* bookmarks bar */
+.nav-item svg{opacity:.9}
+.nav-item{border-radius:14px}
+.nav-stats::before{content:"";width:1px;height:16px;background:rgba(255,255,255,.14);margin-right:4px;align-self:center}
+
+/* New Tab page */
+.search-bar{height:48px;padding:0 10px 0 20px}
+.search-bar:hover{box-shadow:0 1px 6px rgba(0,0,0,.55)}
+.sb-tools{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.sb-tool{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;cursor:pointer;background:transparent;border:none}
+.sb-tool:hover{background:rgba(255,255,255,.1)}
+.search-bar .sb-tool svg,.search-wrap.expanded .search-bar .sb-tool svg{width:20px;height:20px;stroke:none;stroke-width:0}
+.ntp-customize{position:fixed;right:20px;bottom:20px;z-index:2;height:36px;padding:0 16px 0 12px;border-radius:18px;border:none;
+  background:var(--c-card);color:var(--accent-bright);font:500 13px Roboto,Inter,sans-serif;display:flex;align-items:center;gap:8px;
+  cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.ntp-customize:hover{background:var(--c-bar)}
+.ntp-customize svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body:has(.panel.open) .ntp-customize,body:has(.games-screen.open) .ntp-customize,body:has(.effects-screen.open) .ntp-customize,
+body:has(.ai-screen.open) .ntp-customize,body:has(.game-player.open) .ntp-customize,body:has(.settings-screen.open) .ntp-customize{display:none}
+.shortcut-icon{background:#3c4043;transition:background .15s}
+.shortcut:hover .shortcut-icon{background:#4a4d51}
+
+/* scrollbars like Chrome dark */
+*{scrollbar-width:thin;scrollbar-color:#5f6368 transparent}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-thumb{background:#5f6368;border-radius:6px;border:3px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:#80868b;background-clip:padding-box;border:3px solid transparent}
+::-webkit-scrollbar-track{background:transparent}
+@media (max-width:640px){.cf-tabsearch,.cf-avatar,.cf-sep,.ntp-customize span{display:none}}
+</style>
+
+<style id=rail-theme>
+/* ===== Rail layout: left icon rail + tab strip + toolbar, violet/teal palette ===== */
+:root{
+  --rail-w:46px;--tab-h:42px;--tool-h:42px;--bm-h:0px;
+  --c-strip:#09080f;--c-bar:#110f1e;--c-page:#0a0912;--c-card:#141226;--c-field:#15132b;
+  --c-text:#ece9fb;--c-sub:#8d89a8;--c-icon:#b9b4d6;--c-line:rgba(180,168,255,.10);
+  --accent:#8b7cf6;--accent-bright:#b4a8ff;--accent-dim:#7466e0;--accent-glow:rgba(139,124,246,.38);--teal:#5eead4;
+}
+body{padding-left:var(--rail-w);padding-bottom:0;
+  background:
+    radial-gradient(60% 45% at 50% 0%,rgba(139,124,246,.16),transparent 70%),
+    linear-gradient(var(--c-line) 1px,transparent 1px) 0 0/48px 48px,
+    linear-gradient(90deg,var(--c-line) 1px,transparent 1px) 0 0/48px 48px,
+    var(--c-page);
+  background-attachment:fixed}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(70% 70% at 50% 45%,transparent 30%,rgba(5,4,10,.85) 100%)}
+.content{z-index:1}
+
+/* frame */
+#chromeFrame{left:var(--rail-w);z-index:190;background:var(--c-strip);border-bottom:1px solid var(--c-line)}
+.cf-tabs{height:var(--tab-h);align-items:center;padding:0 10px;gap:6px}
+.cf-tabsearch{display:none}
+.cf-tab{height:30px;margin:0;width:220px;border-radius:9px;background:var(--c-card);border:1px solid var(--c-line);
+  box-shadow:0 0 0 1px rgba(139,124,246,.0),0 4px 14px -6px var(--accent-glow);font-weight:500}
+.cf-tab::before,.cf-tab::after{display:none}
+.cf-fav-img{background:linear-gradient(135deg,var(--accent-bright),var(--teal));border-radius:5px;color:#0a0912}
+.cf-newtab{margin:0;width:28px;height:28px;border-radius:8px}
+.cf-toolbar{background:var(--c-strip);box-shadow:none;gap:4px;padding:0 10px}
+.cf-btn{border-radius:9px;width:32px;height:30px}
+.cf-omni{height:32px;border-radius:10px;background:var(--c-field);border:1px solid var(--c-line);padding:0 8px 0 4px}
+.cf-omni:hover{background:#1a1735}
+.cf-omni:focus-within{background:var(--c-field);box-shadow:0 0 0 1px var(--accent),0 0 18px -4px var(--accent-glow);border-color:transparent}
+.cf-site{border-radius:7px;background:transparent}
+.cf-omni-star{border-radius:7px}
+.cf-omni-star.on svg{fill:var(--teal);stroke:var(--teal)}
+.cf-chip{display:flex;align-items:center;gap:7px;height:28px;padding:0 11px;border-radius:14px;background:var(--c-card);
+  border:1px solid var(--c-line);color:var(--c-sub);font-size:11px;white-space:nowrap;flex-shrink:0}
+.cf-chip i{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)}
+.cf-extra,.cf-sep,.cf-avatar{display:none}
+
+/* rail (re-uses the old bottom nav so every handler keeps working) */
+.bottom-nav,body:has(.panel.open) .bottom-nav{display:flex!important;top:0;bottom:0;left:0;right:auto;width:var(--rail-w);height:auto;z-index:190;
+  flex-direction:column;align-items:center;justify-content:flex-start;padding:10px 0;background:var(--c-strip);
+  border:none;border-right:1px solid var(--c-line)}
+.bottom-nav.hidden{transform:translateX(-100%)}
+.nav-buttons{order:0;flex:1;width:100%;flex-direction:column;align-items:center;gap:6px;display:flex}
+.rail-btn,.nav-item{position:relative;width:34px;height:34px;padding:0;border-radius:10px;display:grid;place-items:center;
+  font-size:0;gap:0;color:var(--c-sub);background:transparent;border:none;cursor:pointer;flex-direction:row;transition:background .15s,color .15s}
+.rail-btn svg,.nav-item svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:1}
+.rail-btn:hover,.nav-item:hover{background:rgba(180,168,255,.10);color:#fff}
+.nav-item.active,.rail-btn.active{background:rgba(139,124,246,.18);color:var(--accent-bright)}
+.nav-item::before{display:block;content:"";position:absolute;left:-6px;top:9px;width:3px;height:16px;border-radius:0 3px 3px 0;
+  background:var(--teal);opacity:0;transform:none;box-shadow:0 0 10px var(--teal);transition:opacity .2s}
+.nav-item.active::before{opacity:1;transform:none}
+#navSettings{margin-top:auto}
+.rail-btn::after,.nav-item::after{content:attr(data-tip);position:absolute;left:44px;top:50%;transform:translateY(-50%);padding:5px 9px;
+  border-radius:7px;background:#1b1833;color:var(--c-text);font:500 12px Inter,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .12s;z-index:5;border:1px solid var(--c-line)}
+.rail-btn:hover::after,.nav-item:hover::after{opacity:1}
+.nav-stats{position:fixed;right:16px;bottom:10px;flex-direction:column;align-items:flex-end;gap:2px;padding:0;margin:0;pointer-events:none;z-index:1}
+.nav-stats::before{display:none}
+.nav-stat{font-size:10px;color:rgba(236,233,251,.28);letter-spacing:.02em}
+
+/* new tab page */
+.wordmark{font-family:Inter,Roboto,sans-serif;font-weight:800;font-size:clamp(64px,10vw,104px);letter-spacing:-.05em;text-transform:lowercase;
+  margin-bottom:6px;line-height:1;background:linear-gradient(115deg,#d4ccff 0%,#8b7cf6 45%,#5eead4 110%);-webkit-background-clip:text;background-clip:text;
+  color:transparent;filter:drop-shadow(0 0 26px rgba(139,124,246,.5))}
+.tagline{font-family:Inter,sans-serif;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-sub);margin-bottom:24px}
+.search-wrap,.search-wrap.expanded{width:min(540px,100%)}
+.search-bar{height:46px;border-radius:12px;background:rgba(21,19,43,.8);border:1px solid var(--c-line);padding:0 16px;backdrop-filter:blur(6px)}
+.search-bar:hover{background:rgba(26,23,53,.9);box-shadow:none;border-color:rgba(180,168,255,.22)}
+.search-wrap.expanded .search-bar{background:var(--c-field);border-color:var(--accent);box-shadow:0 0 24px -6px var(--accent-glow)}
+.search-wrap.expanded.has-ac .search-bar{border-radius:12px 12px 0 0}
+.search-bar input{font-weight:500;font-size:15px}
+.sb-tools{display:none}
+.autocomplete{border-radius:0 0 12px 12px;background:var(--c-field);border:1px solid var(--accent);border-top:none;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.shortcuts{--sc-cols:7;--sc-icon:54px;--sc-font:12px;width:min(760px,100%);gap:6px;margin-top:30px}
+.shortcut{background:transparent;border:none;border-radius:14px;padding:10px 4px 6px}
+.shortcut:hover{background:transparent;transform:none}
+.shortcut-icon{padding:14px;border-radius:50%;background:rgba(180,168,255,.06);border:1px solid var(--c-line);
+  transition:transform .18s,background .18s,box-shadow .18s,border-color .18s}
+.shortcut:hover .shortcut-icon{background:rgba(139,124,246,.16);border-color:rgba(180,168,255,.35);box-shadow:0 6px 22px -6px var(--accent-glow);transform:translateY(-3px)}
+.shortcut span{color:var(--c-text);font-weight:600}
+.ntp-customize{display:none}
+.ntp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:min(760px,100%);margin-top:34px}
+.ntp-card{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;border-radius:14px;background:rgba(20,18,38,.7);
+  border:1px solid var(--c-line);color:var(--c-text);font-family:inherit;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}
+.ntp-card:hover{transform:translateY(-2px);border-color:rgba(180,168,255,.35);background:rgba(28,25,55,.85)}
+.ntp-card svg{width:38px;height:38px;padding:9px;border-radius:11px;flex-shrink:0;stroke:var(--teal);fill:none;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;background:rgba(94,234,212,.08)}
+.ntp-card b{display:block;font-size:14px;font-weight:600}
+.ntp-card small{display:block;font-size:12px;color:var(--c-sub);margin-top:2px}
+@media (max-height:780px){.ntp-cards{display:none}}
+
+/* screens sit to the right of the rail */
+.panel{inset:var(--tab-h) 0 0 var(--rail-w)}
+.games-screen,.effects-screen,.ai-screen{inset:var(--chrome-top) 0 0 var(--rail-w)}
+.panel-bar-wrap,.game-player-bar-wrap{background:var(--c-strip);border-bottom:1px solid var(--c-line)}
+.addr-wrap,.game-player-id{border-radius:10px;background:var(--c-field);border:1px solid var(--c-line)}
+.addr-wrap:focus-within{box-shadow:0 0 0 1px var(--accent),0 0 18px -4px var(--accent-glow)}
+.nb{border-radius:9px}
+.screen-header{background:var(--c-bar);border-bottom:1px solid var(--c-line)}
+.games-search-bar,.effects-search-bar{border-radius:12px;background:var(--c-field);border:1px solid var(--c-line)}
+.game-card,.effect-btn{background:var(--c-card);border:1px solid var(--c-line);border-radius:14px}
+.game-card:hover,.effect-btn:hover{background:#1a1735;border-color:rgba(180,168,255,.38);box-shadow:0 8px 24px -10px var(--accent-glow)}
+.effect-btn.playing{background:rgba(139,124,246,.2);border-color:var(--accent-bright)}
+.settings-inner{background:var(--c-card);border:1px solid var(--c-line)}
+.ai-sidebar{background:var(--c-bar)}
+
+@media (max-width:760px){
+  :root{--rail-w:0px}
+  body{padding-bottom:54px}
+  .bottom-nav,body:has(.panel.open) .bottom-nav{top:auto;bottom:0;left:0;right:0;width:auto;height:54px;flex-direction:row;padding:0 10px;
+    border-right:none;border-top:1px solid var(--c-line)}
+  .bottom-nav.hidden{transform:translateY(100%)}
+  .nav-buttons{flex-direction:row;justify-content:space-around;height:100%}
+  #navSettings{margin-top:0}.rail-btn{display:none}
+  .nav-item::before{left:50%;top:-1px;width:16px;height:3px;transform:translateX(-50%);border-radius:0 0 3px 3px}
+  .nav-item::after,.rail-btn::after{display:none}
+  .nav-stats{display:none}
+  .shortcuts{--sc-cols:4}.ntp-cards{display:none}
+  #chromeFrame{left:0}.cf-chip{display:none}
+}
+</style>
+
+<style id=grad-theme>
+/* ===== Everything follows the wordmark gradient: #d4ccff -> #8b7cf6 -> #5eead4 ===== */
+:root{
+  --grad:linear-gradient(115deg,#d4ccff 0%,#8b7cf6 45%,#5eead4 110%);
+  --grad-soft:linear-gradient(115deg,rgba(212,204,255,.16),rgba(139,124,246,.16) 45%,rgba(94,234,212,.16));
+  --grad-v:linear-gradient(180deg,#d4ccff,#8b7cf6 50%,#5eead4);
+  --c-card:#141226;--c-field:#15132b;
+  accent-color:#8b7cf6;
+}
+::selection{background:rgba(139,124,246,.45);color:#fff}
+
+/* atmosphere */
+body{background:
+  radial-gradient(55% 45% at 12% 0%,rgba(212,204,255,.12),transparent 70%),
+  radial-gradient(55% 50% at 88% 100%,rgba(94,234,212,.12),transparent 70%),
+  radial-gradient(60% 45% at 50% 0%,rgba(139,124,246,.16),transparent 70%),
+  linear-gradient(var(--c-line) 1px,transparent 1px) 0 0/48px 48px,
+  linear-gradient(90deg,var(--c-line) 1px,transparent 1px) 0 0/48px 48px,
+  var(--c-page);background-attachment:fixed}
+
+/* hairlines become gradient lines */
+#chromeFrame{border-bottom:1px solid transparent;border-image:linear-gradient(90deg,transparent,rgba(139,124,246,.55),rgba(94,234,212,.55),transparent) 1}
+.bottom-nav,body:has(.panel.open) .bottom-nav{border-right:1px solid transparent!important;border-image:linear-gradient(180deg,transparent,rgba(139,124,246,.5),rgba(94,234,212,.5),transparent) 1}
+.screen-header{border-bottom:1px solid transparent;border-image:linear-gradient(90deg,transparent,rgba(139,124,246,.5),rgba(94,234,212,.5),transparent) 1}
+.panel-bar-wrap,.game-player-bar-wrap{border-bottom:1px solid transparent;border-image:linear-gradient(90deg,transparent,rgba(139,124,246,.5),rgba(94,234,212,.5),transparent) 1}
+
+/* rail */
+.nav-item.active,.rail-btn.active{background:var(--grad-soft);color:#e9e4ff}
+.nav-item::before{background:var(--grad-v);box-shadow:0 0 12px rgba(94,234,212,.7)}
+.rail-btn:hover,.nav-item:hover{background:var(--grad-soft)}
+
+/* tab + omnibox + chip: gradient borders */
+.cf-tab{border:1px solid transparent;background:linear-gradient(var(--c-card),var(--c-card)) padding-box,var(--grad) border-box;
+  box-shadow:0 6px 20px -8px rgba(139,124,246,.55)}
+.cf-omni{border:1px solid transparent;background:linear-gradient(var(--c-field),var(--c-field)) padding-box,linear-gradient(115deg,rgba(212,204,255,.22),rgba(139,124,246,.22),rgba(94,234,212,.22)) border-box}
+.cf-omni:hover{background:linear-gradient(#1a1735,#1a1735) padding-box,linear-gradient(115deg,rgba(212,204,255,.45),rgba(139,124,246,.45),rgba(94,234,212,.45)) border-box}
+.cf-omni:focus-within{background:linear-gradient(var(--c-field),var(--c-field)) padding-box,var(--grad) border-box;box-shadow:0 0 22px -4px rgba(139,124,246,.6)}
+.cf-omni:focus-within svg{stroke:#b4a8ff}
+.cf-chip{border:1px solid transparent;background:linear-gradient(var(--c-card),var(--c-card)) padding-box,linear-gradient(115deg,rgba(212,204,255,.3),rgba(94,234,212,.3)) border-box}
+.cf-chip i{background:var(--grad);box-shadow:0 0 10px #5eead4}
+.cf-btn:hover:not(:disabled),.cf-newtab:hover{background:var(--grad-soft)}
+.cf-omni-star.on svg{fill:#5eead4;stroke:#5eead4}
+
+/* new tab */
+.tagline{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.85}
+.search-bar{background:linear-gradient(#15132b,#15132b) padding-box,linear-gradient(115deg,rgba(212,204,255,.28),rgba(139,124,246,.28),rgba(94,234,212,.28)) border-box;border:1px solid transparent;backdrop-filter:none}
+.search-bar:hover{background:linear-gradient(#1a1735,#1a1735) padding-box,linear-gradient(115deg,rgba(212,204,255,.55),rgba(139,124,246,.55),rgba(94,234,212,.55)) border-box;border-color:transparent}
+.search-wrap.expanded .search-bar{background:linear-gradient(#15132b,#15132b) padding-box,var(--grad) border-box;border-color:transparent;box-shadow:0 0 32px -6px rgba(139,124,246,.65),0 0 60px -20px rgba(94,234,212,.45)}
+.search-wrap.expanded .search-bar svg{stroke:#5eead4}
+.autocomplete{border:1px solid transparent;border-top:none;background:linear-gradient(var(--c-field),var(--c-field)) padding-box,linear-gradient(180deg,#8b7cf6,#5eead4) border-box}
+.shortcut-icon{background:linear-gradient(#17142b,#17142b) padding-box,linear-gradient(115deg,rgba(212,204,255,.25),rgba(94,234,212,.25)) border-box;border:1px solid transparent}
+.shortcut:hover .shortcut-icon{background:linear-gradient(#1d1938,#1d1938) padding-box,var(--grad) border-box;border-color:transparent;box-shadow:0 8px 26px -6px rgba(139,124,246,.7)}
+.ntp-card{border:1px solid transparent;background:linear-gradient(#141226,#141226) padding-box,linear-gradient(115deg,rgba(212,204,255,.2),rgba(139,124,246,.2),rgba(94,234,212,.2)) border-box}
+.ntp-card:hover{background:linear-gradient(#1b1836,#1b1836) padding-box,var(--grad) border-box;border-color:transparent;box-shadow:0 10px 28px -10px rgba(139,124,246,.6)}
+.ntp-card svg{background:var(--grad-soft);stroke:#d4ccff}
+
+/* screens: games / soundboard / AI / settings */
+.screen-header-title{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+.screen-header-sub{color:#5eead4;opacity:.85}
+.games-search-bar,.effects-search-bar{border:1px solid transparent;background:linear-gradient(var(--c-field),var(--c-field)) padding-box,linear-gradient(115deg,rgba(212,204,255,.25),rgba(94,234,212,.25)) border-box}
+.games-search-bar:focus-within,.effects-search-bar:focus-within{background:linear-gradient(var(--c-field),var(--c-field)) padding-box,var(--grad) border-box;box-shadow:0 0 22px -6px rgba(139,124,246,.6)}
+.game-card,.effect-btn{border:1px solid transparent;background:linear-gradient(var(--c-card),var(--c-card)) padding-box,linear-gradient(115deg,rgba(212,204,255,.14),rgba(139,124,246,.14),rgba(94,234,212,.14)) border-box}
+.game-card:hover,.effect-btn:hover{background:linear-gradient(#1b1836,#1b1836) padding-box,var(--grad) border-box;border-color:transparent;box-shadow:0 12px 30px -12px rgba(139,124,246,.65)}
+.effect-btn.playing{background:linear-gradient(#1d1a3a,#1d1a3a) padding-box,var(--grad) border-box;border-color:transparent;box-shadow:0 0 22px -4px rgba(94,234,212,.55)}
+.settings-inner{border:1px solid transparent;background:linear-gradient(var(--c-card),var(--c-card)) padding-box,var(--grad) border-box}
+.addr-wrap,.game-player-id{border:1px solid transparent;background:linear-gradient(var(--c-field),var(--c-field)) padding-box,linear-gradient(115deg,rgba(212,204,255,.25),rgba(94,234,212,.25)) border-box}
+.addr-wrap:focus-within{background:linear-gradient(var(--c-field),var(--c-field)) padding-box,var(--grad) border-box;box-shadow:0 0 22px -4px rgba(139,124,246,.6)}
+.nb:hover{background:var(--grad-soft)}
+.ai-shine{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* scrollbars + sliders */
+*{scrollbar-color:#8b7cf6 transparent}
+::-webkit-scrollbar-thumb,::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#b4a8ff,#8b7cf6 50%,#5eead4);background-clip:padding-box;border:3px solid transparent}
+.volume-slider{accent-color:#5eead4}
+</style>
+
+<style id=poly-theme>
+/* ===== faceted polygon icons ===== */
+.pi{stroke:none!important;fill:none}
+.pi .a{fill:url(#gP)}
+.pi .b{fill:url(#gL)}
+.pi .c{fill:rgba(255,255,255,.34)}
+.pi .d{fill:rgba(8,7,20,.5)}
+.pi .m{fill:currentColor}
+.nav-item .pi,.rail-btn .pi{width:21px;height:21px;opacity:.72;transition:opacity .15s,transform .15s,filter .15s}
+.nav-item:hover .pi,.rail-btn:hover .pi{opacity:1;transform:scale(1.08)}
+.nav-item.active .pi,.rail-btn.active .pi{opacity:1;filter:drop-shadow(0 0 6px rgba(139,124,246,.85))}
+.cf-gem{width:16px;height:16px;flex-shrink:0}
+.cf-tab-x svg{width:9px;height:9px}
+.cf-newtab svg{width:13px;height:13px}
+.cf-btn svg.pi{width:17px;height:17px}
+.cf-site svg.pi{width:15px;height:15px}
+.cf-omni-star svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;fill:none}
+.cf-omni-star.on svg{fill:#5eead4;stroke:#5eead4}
+.search-bar svg.pi{width:18px;height:18px;color:var(--c-sub)}
+.search-wrap.expanded .search-bar svg.pi{color:#5eead4}
+.ntp-card svg.pi{width:40px;height:40px;padding:8px;border-radius:12px;background:var(--grad-soft);stroke:none}
+.nb svg.pi{width:17px;height:17px}
+.shortcut-icon.pi{padding:14px}
+</style>
+<style id=ref-theme>
+/* ===== Reference-style structure: slim rail, outline icons, flat chrome, dotted backdrop ===== */
+:root{--rail-w:40px;--tab-h:42px;--tool-h:42px;--line:rgba(180,168,255,.10);--ink:#d9d3fb}
+.pi.ln .a,.pi.ln .d,.pi.ln polyline,.pi.ln polygon,.pi.ln path.a{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.pi.ln .c{display:none}
+.pi.ln .w,.pi .w{fill:currentColor;stroke:none}
+.pi.tl polyline,.pi.tl polygon{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* backdrop: faint dots */
+body{background:
+  radial-gradient(45% 35% at 50% 38%,rgba(139,124,246,.10),transparent 70%),
+  radial-gradient(rgba(180,168,255,.14) 1px,transparent 1.3px) 0 0/24px 24px,
+  #07050e;background-attachment:fixed}
+body::after{background:radial-gradient(80% 80% at 50% 45%,transparent 40%,rgba(3,2,8,.8) 100%)}
+
+/* rail */
+.bottom-nav,body:has(.panel.open) .bottom-nav{width:var(--rail-w);padding:8px 0;background:#07050e;border-right:1px solid var(--line)!important;border-image:none!important}
+.nav-buttons{gap:2px}
+.rail-btn,.nav-item{width:32px;height:32px;border-radius:8px;color:#9d94d6}
+.nav-item .pi,.rail-btn .pi{width:19px;height:19px;opacity:1;filter:none;transform:none}
+.nav-item:hover,.rail-btn:hover{background:rgba(180,168,255,.08);color:#fff}
+.nav-item.active,.rail-btn.active{background:transparent;color:#fff}
+.nav-item.active .pi,.rail-btn.active .pi{filter:none}
+.nav-item::before,.rail-btn::before{content:"";position:absolute;left:-4px;top:7px;width:2px;height:18px;border-radius:0 2px 2px 0;
+  background:#b4a8ff;box-shadow:none;opacity:0;transform:none;display:block}
+.nav-item.active::before,.rail-btn.active::before{opacity:1}
+#navSettings{margin-top:auto}
+
+/* frame */
+#chromeFrame{background:#07050e;border-bottom:1px solid var(--line);border-image:none}
+.cf-tabs{padding:0 10px}
+.cf-tab{height:30px;width:200px;border-radius:8px;background:#140f24;border:1px solid var(--line);box-shadow:none;font-weight:600;font-size:12px}
+.cf-tab-x svg{width:10px;height:10px}
+.cf-btn{color:#a79fdb}
+.cf-btn:hover:not(:disabled){background:rgba(180,168,255,.08);color:#fff}
+.cf-btn svg.pi{width:16px;height:16px}
+.cf-omni{height:32px;border-radius:8px;background:#0b0816;border:1px solid var(--line);font-weight:600}
+.cf-omni:hover{background:#0e0b1c}
+.cf-omni:focus-within{background:#0b0816;border-color:rgba(180,168,255,.5);box-shadow:none}
+.cf-omni input{font-size:13px;font-weight:600;letter-spacing:.01em}
+.cf-site{background:transparent;color:#5eead4}
+.cf-site:hover{background:rgba(180,168,255,.08)}
+.cf-chip{background:#0b0816;border:1px solid var(--line);font-weight:600}
+.cf-chip i{background:#5eead4;box-shadow:0 0 6px #5eead4}
+
+/* home */
+.wordmark{font-size:clamp(68px,10vw,108px);letter-spacing:-.05em;margin-bottom:4px;
+  filter:drop-shadow(0 0 28px rgba(139,124,246,.55)) drop-shadow(0 0 70px rgba(139,124,246,.3))}
+.tagline{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--ink);opacity:1;text-transform:none;letter-spacing:0;
+  font-size:15px;font-weight:600;margin-bottom:20px}
+.search-wrap{width:min(400px,100%)}
+.search-wrap.expanded{width:min(460px,100%)}
+.search-bar{height:40px;padding:0 14px;border-radius:10px;background:#090714;border:1px solid var(--line);box-shadow:none}
+.search-bar:hover{background:#0c0919;border-color:rgba(180,168,255,.22)}
+.search-wrap.expanded .search-bar{background:#0c0919;border-color:rgba(180,168,255,.5);box-shadow:0 0 28px -8px rgba(139,124,246,.6)}
+.search-bar input{font-size:14px;font-weight:600}
+.search-bar input::placeholder{color:#a79fdb;opacity:.9}
+.search-bar svg.pi{width:17px;height:17px;color:#cfc7f5}
+.autocomplete{background:#0c0919;border:1px solid rgba(180,168,255,.5);border-top:none}
+.shortcuts{--sc-cols:7;--sc-icon:56px;width:min(720px,100%);gap:10px;margin-top:34px}
+.shortcut{padding:8px 4px 4px;gap:10px}
+.shortcut-icon{padding:15px;background:#0d0a1a;border:1px solid var(--line)}
+.shortcut:hover .shortcut-icon{background:#150f2b;border-color:rgba(180,168,255,.32);box-shadow:none;transform:translateY(-2px)}
+.shortcut span{color:var(--ink);font-weight:700;font-size:12px}
+.ntp-status{display:flex;align-items:center;gap:7px;margin-top:22px;color:#8d89a8;font-size:12px;font-weight:600}
+.ntp-status svg{width:15px;height:15px;color:#8d89a8}
+.ntp-cards{margin-top:20px;width:min(720px,100%)}
+.ntp-card{background:#0b0816;border:1px solid var(--line);box-shadow:none;padding:12px 14px}
+.ntp-card:hover{background:#110d22;border-color:rgba(180,168,255,.3);box-shadow:none;transform:translateY(-1px)}
+.ntp-card svg.pi{width:36px;height:36px;padding:8px;background:rgba(180,168,255,.07);color:#cfc7f5;border-radius:10px}
+.ntp-card b{font-weight:700}
+@media (max-height:820px){.ntp-cards{display:none}}
+@media (max-width:760px){:root{--rail-w:0px}.shortcuts{--sc-cols:4}.ntp-status{margin-top:16px}}
+</style>
+<style id=circle-theme>
+/* launcher cards -> round icon buttons with a label underneath, like the shortcuts */
+.ntp-cards{display:flex;justify-content:center;gap:clamp(22px,4vw,44px);width:auto;margin-top:26px}
+@media (max-height:820px){.ntp-cards{display:flex}}
+.ntp-card{flex-direction:column;align-items:center;gap:10px;padding:0;background:transparent;border:none;border-radius:0;box-shadow:none;min-width:64px}
+.ntp-card:hover{background:transparent;border:none;box-shadow:none;transform:none}
+.ntp-card svg.pi{width:56px;height:56px;padding:15px;border-radius:50%;background:#0d0a1a;border:1px solid var(--line);color:#cfc7f5;
+  transition:transform .18s,background .18s,border-color .18s}
+.ntp-card:hover svg.pi{background:#150f2b;border-color:rgba(180,168,255,.32);transform:translateY(-2px);color:#fff}
+.ntp-card span{text-align:center}
+.ntp-card b{font-size:12px;font-weight:700;color:var(--ink)}
+</style>
+<svg width=0 height=0 style=position:absolute aria-hidden=true focusable=false><defs>
+<linearGradient id=gP x1=0 y1=0 x2=1 y2=1><stop offset=0 stop-color=#d4ccff /><stop offset=.5 stop-color=#8b7cf6 /><stop offset=1 stop-color=#5eead4 /></linearGradient>
+<linearGradient id=gL x1=0 y1=0 x2=1 y2=1><stop offset=0 stop-color=#ffffff /><stop offset=1 stop-color=#d4ccff /></linearGradient>
+</defs></svg>
+
+<div id=chromeFrame>
+  <div class=cf-tabs>
+    <button class=cf-tabsearch tabindex=-1 title="Search tabs"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg></button>
+    <div class=cf-tab id=cfTab>
+      <svg class="cf-gem pi" viewBox="0 0 24 24"><polygon class=a points="12,2 21,7 21,17 12,22 3,17 3,7"/><polygon class=c points="12,2 21,7 12,12"/><polygon class=c style=opacity:.4 points="3,7 12,2 12,12"/><polygon class=d points="12,12 21,17 12,22 3,17"/></svg>
+      <span class=cf-tab-title id=cfTabTitle>Home</span>
+      <button class=cf-tab-x tabindex=-1 title=Close><svg class="pi tl" viewBox="0 0 24 24"><polyline points="6,6 18,18"/><polyline points="18,6 6,18"/></svg></button>
+    </div>
+    <button class=cf-newtab tabindex=-1 title="New tab"><svg class="pi tl" viewBox="0 0 24 24"><polyline points="12,5 12,19"/><polyline points="5,12 19,12"/></svg></button>
+  </div>
+  <div class=cf-toolbar id=cfToolbar>
+    <button class=cf-btn id=cfBack title=Back disabled><svg class="pi tl" viewBox="0 0 24 24"><polyline points="19,12 5,12"/><polyline points="11,6 5,12 11,18"/></svg></button>
+    <button class=cf-btn id=cfFwd title=Forward disabled><svg class="pi tl" viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,6 19,12 13,18"/></svg></button>
+    <button class=cf-btn id=cfReload title=Reload><svg class="pi tl" viewBox="0 0 24 24"><polyline points="18.93,16.0 18.13,17.14 17.14,18.13 16.0,18.93 14.74,19.52 13.39,19.88 12.0,20.0 10.61,19.88 9.26,19.52 8.0,18.93 6.86,18.13 5.87,17.14 5.07,16.0 4.48,14.74 4.12,13.39 4.0,12.0 4.12,10.61 4.48,9.26 5.07,8.0 5.87,6.86 6.86,5.87 8.0,5.07 9.26,4.48 10.61,4.12 12.0,4.0 13.39,4.12 14.74,4.48 16.0,5.07 17.14,5.87 18.13,6.86"/><polyline points="18.19,1.33 18.13,6.86 12.67,5.95"/></svg></button>
+    <div class=cf-omni id=cfOmni>
+      <button class=cf-site id=cfSite tabindex=-1 title="View site information"><svg id=cfSiteIcon class="pi tl" viewBox="0 0 24 24"><polygon points="5,11 19,11 19,21 5,21"/><polyline points="8,11 8,7.5 10,5 14,5 16,7.5 16,11"/></svg></button>
+      <input id=cfAddr type=text placeholder="Search or type a URL" autocomplete=off spellcheck=false>
+      <button class=cf-omni-star id=cfStar tabindex=-1 title="Bookmark this tab"><svg viewBox="0 0 24 24"><polygon points="12.0,2.6 14.53,9.12 21.51,9.51 16.09,13.93 17.88,20.69 12.0,16.9 6.12,20.69 7.91,13.93 2.49,9.51 9.47,9.12"/></svg></button>
+    </div>
+    <div class=cf-chip id=cfChip title="Connection"><i></i><span id=cfPing>ping: --</span></div>
+    <button class=cf-btn id=cfFull title="Full screen" tabindex=-1><svg class="pi tl" viewBox="0 0 24 24"><polyline points="3,9 3,3 9,3"/><polyline points="15,3 21,3 21,9"/><polyline points="21,15 21,21 15,21"/><polyline points="9,21 3,21 3,15"/></svg></button>
+    <button class=cf-btn id=cfMenu title="Customize and control"><svg class="pi" viewBox="0 0 24 24"><polygon class=m points="12,3 14,5 12,7 10,5"/><polygon class=m points="12,10 14,12 12,14 10,12"/><polygon class=m points="12,17 14,19 12,21 10,19"/></svg></button>
+  </div>
+</div>
+<canvas id=stars></canvas>
     <div class=ac-banner id=acLeft></div>
     <div class=ac-banner id=acRight></div>
     <div class=content>
       <div class=wordmark>Raplon</div>
       <div class=tagline id=tagline></div>
       <div class=search-wrap id=searchWrap>
-        <div class=search-bar><svg viewBox="0 0 24 24">
-            <circle cx=11 cy=11 r=8 />
-            <path d="m21 21-4.35-4.35" />
-          </svg><input id=searchInput placeholder="Search or enter address" autocomplete=off></div>
+        <div class=search-bar><svg class="pi" viewBox="0 0 24 24"><path class=m fill-rule=evenodd d="M16.47,12.68 L12.68,16.47 L7.32,16.47 L3.53,12.68 L3.53,7.32 L7.32,3.53 L12.68,3.53 L16.47,7.32Z M14.25,11.76 L11.76,14.25 L8.24,14.25 L5.75,11.76 L5.75,8.24 L8.24,5.75 L11.76,5.75 L14.25,8.24Z"/><polygon class=m points="14.6,16.2 16.2,14.6 22,20.4 20.4,22"/></svg><input id=searchInput placeholder="Search or enter address" autocomplete=off><span class=sb-tools><span class=sb-tool title="Search by voice"><svg viewBox="0 0 24 24"><path fill="#8ab4f8" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path fill="#81c995" d="M17 11a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11z"/></svg></span><span class=sb-tool title="Search by image"><svg viewBox="0 0 24 24"><path fill="#f28b82" d="M3 3h6v2H5v4H3z"/><path fill="#fdd663" d="M21 3v6h-2V5h-4V3z"/><path fill="#81c995" d="M3 21v-6h2v4h4v2z"/><path fill="#8ab4f8" d="M21 21h-6v-2h4v-4h2z"/><circle cx="12" cy="12" r="3.2" fill="#e8eaed"/></svg></span></span></div>
         <div class=autocomplete id=autocomplete></div>
       </div>
       <div class=shortcuts id=shortcuts></div>
     </div>
+    <div class=ntp-status id=ntpStatus><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="9,4.5 11.6,6 11.6,9 9,10.5 6.4,9 6.4,6"/><polygon class=a points="3,20 3,17 6,14 12,14 15,17 15,20"/><polygon class=a points="16,5 18,6.2 18,8.6 16,9.8"/><polygon class=a points="17,14 20,15.5 21,18 21,20 17.5,20"/></svg><span id=ntpStatusText>Checking connection…</span></div>
+    <div class=ntp-cards id=ntpCards>
+      <button class=ntp-card data-go=openGames type=button><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="2,10 5.5,6 18.5,6 22,10 22,16 19.5,19 15.5,15 8.5,15 4.5,19 2,16"/><polygon class=c points="5.5,6 18.5,6 22,10 2,10"/><polygon class=w points="6.6,8.8 8.4,8.8 8.4,10.1 9.7,10.1 9.7,11.9 8.4,11.9 8.4,13.2 6.6,13.2 6.6,11.9 5.3,11.9 5.3,10.1 6.6,10.1"/><polygon class=w points="15.6,8.4 16.8,9.6 15.6,10.8 14.4,9.6"/><polygon class=w points="18,10.8 19.2,12 18,13.2 16.8,12"/></svg><span><b>Games</b></span></button>
+      <button class=ntp-card data-go=openEffects type=button><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="3,9 7,9 12,4.5 12,19.5 7,15 3,15"/><polygon class=c points="7,9 12,4.5 12,12"/><polygon class=w points="14.5,9 16.7,12 14.5,15 15.9,15 18.1,12 15.9,9"/><polygon class=w points="17.8,6 21.2,12 17.8,18 19.3,18 22.7,12 19.3,6"/></svg><span><b>Soundboard</b></span></button>
+      <button class=ntp-card data-go=openAI type=button><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="10,5.5 12.2,11.8 18.5,14 12.2,16.2 10,22.5 7.8,16.2 1.5,14 7.8,11.8"/><polygon class=c points="10,5.5 12.2,11.8 10,14"/><polygon class=d points="10,14 12.2,16.2 10,22.5"/><polygon class=a points="19,1.5 20.1,4.4 23,5.5 20.1,6.6 19,9.5 17.9,6.6 15,5.5 17.9,4.4"/><polygon class=c points="19,1.5 20.1,4.4 19,5.5"/></svg><span><b>AI</b></span></button>
+    </div>
+    <button class=ntp-customize id=ntpCustomize type=button><svg viewBox="0 0 24 24"><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z" /></svg><span>Customize Raplon</span></button>
     <div class=panel id=panel>
       <div class=panel-bar-wrap>
         <div class=panel-bar>
           <div class=nav-btn-group>
-            <div class=home-btn-wrap id=homeBtnWrap><button class="nb home-btn" onclick=handleHome() id=homeBtn><svg viewBox="0 0 24 24">
-                  <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                  <path d="M9 21V12h6v9" />
-                </svg></button><span class=home-confirm-hint>close?</span>
+            <div class=home-btn-wrap id=homeBtnWrap><button class="nb home-btn" onclick=handleHome() id=homeBtn><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="12,2.5 22.5,11 1.5,11"/><polygon class=c points="12,2.5 22.5,11 12,11"/><polygon class=a points="4.5,11 19.5,11 19.5,21.5 4.5,21.5"/><polygon class=c points="12,11 19.5,11 19.5,21.5 12,21.5"/><polygon class=d points="9.5,21.5 9.5,15 14.5,15 14.5,21.5"/></svg></button><span class=home-confirm-hint>close?</span>
               <div class=home-countdown id=homeCountdown></div>
-            </div><button class=nb onclick=goBack()><svg viewBox="0 0 24 24">
-                <path d="m12 19-7-7 7-7" />
-                <path d="M19 12H5" />
-              </svg></button><button class=nb onclick=goForward()><svg viewBox="0 0 24 24">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg></button><button class=nb onclick=reload() id=reloadBtn><svg viewBox="0 0 24 24" class=reload-icon>
-                <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
-                <path d="M21 3v5h-5" />
-              </svg><span class=reload-spinner-wrap><span class=reload-spinner-ring></span></span></button>
+            </div><button class=nb onclick=goBack()><svg class="pi tl" viewBox="0 0 24 24"><polyline points="19,12 5,12"/><polyline points="11,6 5,12 11,18"/></svg></button><button class=nb onclick=goForward()><svg class="pi tl" viewBox="0 0 24 24"><polyline points="5,12 19,12"/><polyline points="13,6 19,12 13,18"/></svg></button><button class=nb onclick=reload() id=reloadBtn><svg class="reload-icon pi tl" viewBox="0 0 24 24"><polyline points="18.93,16.0 18.13,17.14 17.14,18.13 16.0,18.93 14.74,19.52 13.39,19.88 12.0,20.0 10.61,19.88 9.26,19.52 8.0,18.93 6.86,18.13 5.87,17.14 5.07,16.0 4.48,14.74 4.12,13.39 4.0,12.0 4.12,10.61 4.48,9.26 5.07,8.0 5.87,6.86 6.86,5.87 8.0,5.07 9.26,4.48 10.61,4.12 12.0,4.0 13.39,4.12 14.74,4.48 16.0,5.07 17.14,5.87 18.13,6.86"/><polyline points="18.19,1.33 18.13,6.86 12.67,5.95"/></svg><span class=reload-spinner-wrap><span class=reload-spinner-ring></span></span></button>
           </div>
           <div class=addr-wrap><svg viewBox="0 0 24 24" id=lockIcon class=lock-icon>
               <rect height=11 rx=2 width=18 x=3 y=11 />
@@ -3624,14 +4139,14 @@
       }
 
       .button-map.remapping {
-        border-color: #6d5cd6 !important;
-        background: rgba(139, 124, 246, .08) !important;
+        border-color: #4f86e0 !important;
+        background: rgba(94, 151, 246, .08) !important;
         animation: pulse-remap 1s infinite
       }
 
       .button-map.remapping .key-display {
-        background: rgba(139, 124, 246, .16) !important;
-        color: #a78bfa !important;
+        background: rgba(94, 151, 246, .16) !important;
+        color: #8ab4f8 !important;
         letter-spacing: .12em
       }
 
@@ -3854,26 +4369,71 @@
     </div>
     <nav class=bottom-nav id=bottomNav>
       <div class=nav-stats><span class=nav-stat>© raplon.best</span><span class=nav-stat id=pingDisplay>ping: --</span><span class=nav-stat id=baseDisplay>base: --</span></div>
-      <div class=nav-buttons><button class=nav-item onclick=openGames() id=navGames><svg viewBox="0 0 24 24" stroke-linecap=round stroke-linejoin=round>
-            <line x1=6 x2=10 y1=11 y2=11 />
-            <line x1=8 x2=8 y1=9 y2=13 />
-            <line x1=15 x2=15.01 y1=12 y2=12 />
-            <line x1=18 x2=18.01 y1=10 y2=10 />
-            <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
-          </svg> Games</button><button class=nav-item onclick=openEffects() id=navEffects><svg viewBox="0 0 24 24">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-          </svg> Soundboard</button><button class=nav-item onclick=openAI() id=navAI><svg viewBox="0 0 24 24">
-            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
-          </svg> AI</button><button class=nav-item onclick=toggleSettings() id=navSettings><svg viewBox="0 0 24 24">
-            <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
-            <circle cx=12 cy=12 r=3 />
-          </svg> Settings</button></div>
+      <div class=nav-buttons><button class=rail-btn id=railHome type=button data-tip=Home><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="12,2.5 22.5,11 1.5,11"/><polygon class=c points="12,2.5 22.5,11 12,11"/><polygon class=a points="4.5,11 19.5,11 19.5,21.5 4.5,21.5"/><polygon class=c points="12,11 19.5,11 19.5,21.5 12,21.5"/><polygon class=d points="9.5,21.5 9.5,15 14.5,15 14.5,21.5"/></svg></button><button class=nav-item onclick=openGames() id=navGames><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="2,10 5.5,6 18.5,6 22,10 22,16 19.5,19 15.5,15 8.5,15 4.5,19 2,16"/><polygon class=c points="5.5,6 18.5,6 22,10 2,10"/><polygon class=w points="6.6,8.8 8.4,8.8 8.4,10.1 9.7,10.1 9.7,11.9 8.4,11.9 8.4,13.2 6.6,13.2 6.6,11.9 5.3,11.9 5.3,10.1 6.6,10.1"/><polygon class=w points="15.6,8.4 16.8,9.6 15.6,10.8 14.4,9.6"/><polygon class=w points="18,10.8 19.2,12 18,13.2 16.8,12"/></svg> Games</button><button class=nav-item onclick=openEffects() id=navEffects><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="3,9 7,9 12,4.5 12,19.5 7,15 3,15"/><polygon class=c points="7,9 12,4.5 12,12"/><polygon class=w points="14.5,9 16.7,12 14.5,15 15.9,15 18.1,12 15.9,9"/><polygon class=w points="17.8,6 21.2,12 17.8,18 19.3,18 22.7,12 19.3,6"/></svg> Soundboard</button><button class=nav-item onclick=openAI() id=navAI><svg class="pi ln" viewBox="0 0 24 24"><polygon class=a points="10,5.5 12.2,11.8 18.5,14 12.2,16.2 10,22.5 7.8,16.2 1.5,14 7.8,11.8"/><polygon class=c points="10,5.5 12.2,11.8 10,14"/><polygon class=d points="10,14 12.2,16.2 10,22.5"/><polygon class=a points="19,1.5 20.1,4.4 23,5.5 20.1,6.6 19,9.5 17.9,6.6 15,5.5 17.9,4.4"/><polygon class=c points="19,1.5 20.1,4.4 19,5.5"/></svg> AI</button><button class=nav-item onclick=toggleSettings() id=navSettings><svg class="pi ln" viewBox="0 0 24 24"><path class=a fill-rule=evenodd d="M19.63,10.38 L22.12,10.76 L22.12,13.24 L19.63,13.62 L18.54,16.25 L20.04,18.28 L18.28,20.04 L16.25,18.54 L13.62,19.63 L13.24,22.12 L10.76,22.12 L10.38,19.63 L7.75,18.54 L5.72,20.04 L3.96,18.28 L5.46,16.25 L4.37,13.62 L1.88,13.24 L1.88,10.76 L4.37,10.38 L5.46,7.75 L3.96,5.72 L5.72,3.96 L7.75,5.46 L10.38,4.37 L10.76,1.88 L13.24,1.88 L13.62,4.37 L16.25,5.46 L18.28,3.96 L20.04,5.72 L18.54,7.75Z M15.33,13.38 L13.38,15.33 L10.62,15.33 L8.67,13.38 L8.67,10.62 L10.62,8.67 L13.38,8.67 L15.33,10.62Z"/><path class=c fill-rule=evenodd d="M17.17,14.14 L14.14,17.17 L9.86,17.17 L6.83,14.14 L6.83,9.86 L9.86,6.83 L14.14,6.83 L17.17,9.86Z M15.33,13.38 L13.38,15.33 L10.62,15.33 L8.67,13.38 L8.67,10.62 L10.62,8.67 L13.38,8.67 L15.33,10.62Z"/></svg> Settings</button></div>
     </nav>
+
     <script>
       (() => {
-        document.title = "opium";
+        const $ = id => document.getElementById(id);
+        const call = fn => () => { try { window[fn] && window[fn]() } catch (e) {} };
+        const pages = [
+          ['gamesScreen', 'Games', 'raplon://games', 'closeGames'],
+          ['effectsScreen', 'Soundboard', 'raplon://soundboard', 'closeEffects'],
+          ['aiScreen', 'AI', 'raplon://ai', 'closeAI']
+        ];
+        function sync() {
+          let cur = null;
+          for (const p of pages) { const el = $(p[0]); if (el && el.classList.contains('open')) cur = p }
+          $('cfTabTitle').textContent = cur ? cur[1] : 'Home';
+          $('cfTab').classList.toggle('has-fav', !!cur);
+          $('cfOmni').classList.toggle('has-url', !!cur);
+          const a = $('cfAddr'); if (document.activeElement !== a) a.value = cur ? cur[2] : 'raplon://home';
+          $('cfBack').disabled = !cur;
+          const si2 = $('cfSiteIcon');
+          if (si2) si2.innerHTML = '<polygon points="5,11 19,11 19,21 5,21"/><polyline points="8,11 8,7.5 10,5 14,5 16,7.5 16,11"/>';
+        }
+        pages.forEach(p => { const el = $(p[0]); if (el) new MutationObserver(sync).observe(el, { attributes: true, attributeFilter: ['class'] }) });
+        $('cfBack').onclick = () => { for (const p of pages) { const el = $(p[0]); if (el && el.classList.contains('open')) { call(p[3])(); break } } };
+        $('cfReload').onclick = () => location.reload();
+        $('cfMenu').onclick = call('toggleSettings');
+        
+        const tips={navGames:'Games',navEffects:'Soundboard',navAI:'AI',navSettings:'Settings'};
+        Object.keys(tips).forEach(k=>{const el=$(k);if(el){el.dataset.tip=tips[k];el.title=tips[k]}});
+        $('railHome').onclick=()=>['closeGames','closeEffects','closeAI'].forEach(f=>call(f)());
+        $('cfFull').onclick=()=>{try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(e){}};
+        document.querySelectorAll('.ntp-card').forEach(c=>c.onclick=()=>call(c.dataset.go)());
+        const pd=$('pingDisplay');
+        if(pd){const up=()=>{const t=pd.textContent.trim()||'ping: --';$('cfPing').textContent=t;const ok=/\d/.test(t);$('ntpStatusText').textContent=ok?'Online · '+t:'Checking connection…'};up();new MutationObserver(up).observe(pd,{childList:true,characterData:true,subtree:true})}
+        const syncRail=()=>{for(const p of pages){const el=$(p[0]);if(el&&el.classList.contains('open')){$('railHome').classList.remove('active');return}}$('railHome').classList.add('active')};
+        pages.forEach(p=>{const el=$(p[0]);if(el)new MutationObserver(syncRail).observe(el,{attributes:true,attributeFilter:['class']})});syncRail();
+        $('cfStar').onclick = e => { e.stopPropagation(); $('cfStar').classList.toggle('on'); const b = document.getElementById('bookmarkBtn'); if (b) b.click(); };
+        $('ntpCustomize').onclick = call('toggleSettings');
+        $('cfSite').onclick = e => { e.stopPropagation(); addr.focus(); };
+        const addr = $('cfAddr');
+        $('cfOmni').onclick = () => addr.focus();
+        addr.addEventListener('focus', () => setTimeout(() => addr.select(), 0));
+        addr.addEventListener('blur', sync);
+        addr.addEventListener('keydown', e => {
+          if (e.key === 'Escape') { addr.blur(); return }
+          if (e.key !== 'Enter') return;
+          e.preventDefault();
+          const q = addr.value.trim();
+          if (!q || q === 'raplon://home') { addr.blur(); return }
+          for (const p of pages) { const el = $(p[0]); if (el && el.classList.contains('open')) { call(p[3])(); break } }
+          const si = $('searchInput');
+          if (si) {
+            si.value = q;
+            si.dispatchEvent(new Event('input', { bubbles: true }));
+            si.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true, cancelable: true }));
+          }
+          addr.blur();
+        });
+        sync();
+      })()
+    </script>
+    <script>
+      (() => {
+        document.title = "raplon";
         const e = document.createElement("script");
         e.src = getAsset("main.js"), e.onload = function() {
           e.remove()
