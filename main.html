@@ -130,30 +130,22 @@
       }
 
       .search-wrap {
-        position: fixed;
-        top: 0;
-        left: clamp(72px, 9vw, 88px);
-        right: 0;
-        transform: none;
-        z-index: 40;
-        width: auto;
-        padding: 0;
-        box-sizing: border-box;
-        transition: none
+        position: relative;
+        width: min(480px, 100%);
+        transition: width .3s cubic-bezier(.22, 1, .36, 1)
       }
 
       .search-wrap.expanded {
-        width: auto
+        width: min(620px, 100%)
       }
 
       .search-bar {
         display: flex;
         align-items: center;
         background: rgba(255, 255, 255, .04);
-        border: none;
-        border-bottom: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 0;
-        padding: 0 clamp(14px, 2.2vw, 20px);
+        border: 1px solid rgba(255, 255, 255, .08);
+        border-radius: clamp(8px, 1.5vw, 12px);
+        padding: 0 clamp(10px, 2vw, 16px);
         width: 100%;
         gap: clamp(6px, 1.2vw, 10px);
         transition: border-color .2s, background .2s
@@ -162,11 +154,11 @@
       .search-wrap.expanded .search-bar {
         border-color: var(--accent-dim);
         background: rgba(255, 255, 255, .06);
-        border-radius: 0
+        border-radius: clamp(8px, 1.5vw, 12px)
       }
 
       .search-wrap.expanded.has-ac .search-bar {
-        border-radius: 0
+        border-radius: clamp(8px, 1.5vw, 12px) clamp(8px, 1.5vw, 12px) 0 0
       }
 
       .search-bar svg {
@@ -208,7 +200,7 @@
         background: rgba(12, 12, 20, .99);
         border: 1px solid var(--accent-dim);
         border-top: none;
-        border-radius: 0;
+        border-radius: 0 0 clamp(8px, 1.5vw, 12px) clamp(8px, 1.5vw, 12px);
         overflow: hidden;
         z-index: 10
       }
@@ -639,46 +631,38 @@
 
       .bottom-nav {
         position: fixed;
-        top: 0;
-        left: 0;
         bottom: 0;
+        left: 0;
+        right: 0;
         z-index: 100;
         display: flex;
-        flex-direction: column;
         align-items: stretch;
         justify-content: space-between;
         background: rgba(8, 8, 16, .97);
-        border-right: 1px solid rgba(255, 255, 255, .08);
+        border-top: 1px solid rgba(255, 255, 255, .08);
         transition: transform .3s cubic-bezier(.22, 1, .36, 1);
-        padding: clamp(12px, 2vw, 20px) 0;
-        width: clamp(72px, 9vw, 88px)
+        padding: 0 clamp(12px, 2vw, 24px)
       }
 
       .bottom-nav.hidden {
-        transform: translateX(-100%)
+        transform: translateY(100%)
       }
 
       .nav-stats {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        gap: 4px;
-        padding: clamp(10px, 1.8vw, 14px) clamp(6px, 1vw, 10px);
-        flex-shrink: 0;
-        order: 2
+        gap: 2px;
+        padding: clamp(8px, 1.5vw, 11px) 0 clamp(10px, 1.8vw, 13px);
+        flex-shrink: 0
       }
 
       .nav-stat {
-        font-size: clamp(7px, .85vw, 9px);
+        font-size: clamp(8px, .9vw, 10px);
         color: rgba(255, 255, 255, .4);
-        letter-spacing: .04em;
+        letter-spacing: .06em;
         font-weight: 300;
-        white-space: nowrap;
-        text-align: center;
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis
+        white-space: nowrap
       }
 
       .nav-stat a {
@@ -692,12 +676,7 @@
 
       .nav-buttons {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
-        gap: clamp(4px, 1vw, 8px);
-        order: 1
+        align-items: center
       }
 
       .nav-item {
@@ -705,31 +684,30 @@
         flex-direction: column;
         align-items: center;
         gap: clamp(3px, .8vw, 5px);
-        padding: clamp(10px, 1.6vw, 14px) clamp(6px, 1.2vw, 10px);
+        padding: clamp(8px, 1.5vw, 11px) clamp(10px, 1.5vw, 18px) clamp(10px, 1.8vw, 13px);
         background: 0 0;
         border: none;
         color: rgba(255, 255, 255, .55);
         font-family: inherit;
-        font-size: clamp(8px, .95vw, 10px);
-        letter-spacing: .08em;
+        font-size: clamp(9px, 1vw, 10px);
+        letter-spacing: .1em;
         text-transform: uppercase;
         cursor: pointer;
         transition: color .15s;
-        position: relative;
-        width: 100%
+        position: relative
       }
 
       .nav-item::before {
         content: '';
         position: absolute;
-        top: 50%;
-        left: 4px;
-        width: 3px;
-        height: 3px;
+        top: 6px;
+        left: 50%;
+        width: 4px;
+        height: 4px;
         border-radius: 50%;
         background: var(--accent-bright);
         opacity: 0;
-        transform: translateY(-50%) scale(.4);
+        transform: translateX(-50%) scale(.4);
         transition: opacity .2s, transform .2s
       }
 
@@ -743,12 +721,12 @@
 
       .nav-item.active::before {
         opacity: 1;
-        transform: translateY(-50%) scale(1)
+        transform: translateX(-50%) scale(1)
       }
 
       .nav-item svg {
-        width: clamp(16px, 2.4vw, 20px);
-        height: clamp(16px, 2.4vw, 20px);
+        width: clamp(14px, 2.2vw, 17px);
+        height: clamp(14px, 2.2vw, 17px);
         stroke: currentColor;
         fill: none;
         stroke-width: 1.6
